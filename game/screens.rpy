@@ -9,6 +9,11 @@ init offset = -1
 
 # Thanks RenpyTom! Borrowed from the Ren'Py Launcher
 init python:
+    # Ren'Py 6 doesn't have translate_string defined by default so
+    # import it and set for Ren'Py 7 code workings.
+    from renpy.translation import translate_string
+    renpy.translate_string = translate_string
+
     def scan_translations():
 
         languages = renpy.known_languages()
@@ -17,11 +22,17 @@ init python:
             return None
 
         rv = [(i, renpy.translate_string("{#language name and font}", i)) for i in languages ]
-        rv.sort(key=lambda a : renpy.filter_text_tags(a[1], allow=[]).lower())
+        
+        # We will use a imported Ren'Py 7 function for Ren'Py 6
+        if renpy.version_tuple == (6, 99, 12, 4, 2187):
+            rv.sort(key=lambda a : filter_text_tags(a[1], allow=[]).lower())
+        else:
+            rv.sort(key=lambda a : renpy.filter_text_tags(a[1], allow=[]).lower())
 
         rv.insert(0, (None, "English"))
 
-        bound = math.ceil(len(rv)/2.)
+        # Cause Ren'Py 6 sets this as float, set it as int
+        bound = int(math.ceil(len(rv)/2.))
 
         return (rv[:bound], rv[bound:2*bound])
 
@@ -184,27 +195,64 @@ screen say(who, what):
         text what id "what"
 
         if who is not None:
-
-            window:
-                style "namebox"
-                text who id "who"
-
-    # If there's a side image, display it above the text. Do not display
-    # on the phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
-
-    use quick_menu
+            if who == s_name:
+                window:
+                    style "sayori"
+                    text who id "who"
+            if who == m_name:
+                window:
+                    style "monika"
+                    text who id "who"
+            if who == y_name:
+                window:
+                    style "yuri"
+                    text who id "who"
+            if who == n_name:
+                window:
+                    style "natsuki"
+                    text who id "who"
+            if who == me_name:
+                window:
+                    style "meiji"
+                    text who id "who"
+            if who == player:
+                window:
+                    style "player"
+                    text who id "who"
+            if who == mo_name:
+                window:
+                    style "mori"
+                    text who id "who"
+            if who == kot_name:
+                window:
+                    style "kotonoha"
+                    text who id "who"
+            if who == koz_name:
+                window:
+                    style "kozue"
+                    text who id "who"
+            if who == ya_name:
+                window:
+                    style "yae"
+                    text who id "who"
+            if who == pl_name:
+                window:
+                    style "playji"
+                    text who id "who"
+            if who != s_name and who != m_name and who != y_name and who != n_name and who != me_name and who != player and who != mo_name and who != kot_name and who != koz_name and who != ya_name and who != pl_name:
+                window:
+                    style "namebox"
+                    text who id "who"
+        use quick_menu
 
 
 style window is default
-style say_label is default
+style say_label_mc is default
 style say_dialogue is default
 style say_thought is say_dialogue
 
-style namebox is default
-style namebox_label is say_label
-
+style player is default
+style namebox_label is say_label_mc
 
 style window:
     xalign 0.5
@@ -223,8 +271,106 @@ style namebox:
     xsize gui.namebox_width
     ypos gui.name_ypos
     ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+style sayori:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/maincastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style yuri:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/maincastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style monika:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/maincastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style natsuki:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/maincastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style meiji:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/maincastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style kotonoha:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style kozue:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style mori:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style yae:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style player:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/sidecastbox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    padding gui.namebox_borders.padding
+
+style playji:
+    xpos gui.name_xpos
+    xanchor gui.name_xalign
+    xsize gui.namebox_width
+    ypos gui.name_ypos
+    ysize gui.namebox_height
+    background Frame("mod_assets/gui/playjibox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
@@ -235,6 +381,79 @@ style say_label:
     yalign 0.5
     outlines [(3, text_outline_color, 0, 0), (1, text_outline_color, 1, 1)]
     #outlines [(3, "#b59", 0, 0), (1, "#b59", 1, 1)]
+
+style say_label_sayori:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#58b", 0, 0), (1, "#58b", 1, 1)]
+
+style say_label_mc:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#000000", 0, 0), (1, "#000000", 1, 1)]
+
+style say_label_monika:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#5b5", 0, 0), (1, "#5b5", 1, 1)]
+
+style say_label_yuri:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#8755bb", 0, 0), (1, "#8755bb", 1, 1)]
+
+style say_label_natsuki:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#b59", 0, 0), (1, "#b59", 1, 1)]
+
+style say_label_mori:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#986c0b", 0, 0), (1, "#986c0b", 1, 1)]
+
+style say_label_kotonoha:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#dd83b1", 0, 0), (1, "#dd83b1", 1, 1)]
+
+style say_label_kozue:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#bf6940", 0, 0), (1, "#bf6940", 1, 1)]
+
+style say_label_yae:
+    color gui.accent_color
+    font gui.name_font
+    size gui.name_text_size
+    xalign gui.name_xalign
+    yalign 0.5
+    outlines [(3, "#513369", 0, 0), (1, "#513369", 1, 1)]
+
 
 style say_dialogue:
     xpos gui.text_xpos
@@ -514,7 +733,7 @@ screen navigation():
             if renpy.variant("pc"):
 
                 ## Help isn't necessary or relevant to mobile devices.
-                textbutton _("Help") action [Help("README.html"), Show(screen="dialog", message="The help file has been opened in your browser.", ok_action=Hide("dialog"))]
+                #textbutton _("Help") action OpenURL("https://github.com/GanstaKingofSA/DDLCModTemplate2.0")
 
                 ## The quit button is banned on iOS and unnecessary on Android.
                 textbutton _("Quit") action Quit(confirm=not main_menu)
@@ -808,7 +1027,7 @@ screen about():
                 ## Do not touch/remove these unless the © or – symbol isn't available in your font.
                 ## You may add things above or below it.
                 ## If you are not going with a splashscreen option, this first line MUST stay in the mod.
-                text "Made with bronya_rand's {a=https://github.com/Bronya-Rand/DDLCModTemplate2.0}DDLC Mod Template 2.0{/a}\nCopyright © 2019-" + str(datetime.date.today().year) + " Azariel Del Carmen (bronya_rand). All rights reserved.\n"
+                text "Made with bronya_rands's {a=https://github.com/GanstaKingofSA/DDLCModTemplate2.0}DDLC Mod Template 2.0{/a}.\nCopyright © 2019-" + str(datetime.date.today().year) + " Azariel Del Carmen (bronya_rand). All rights reserved.\n"
                 text "Doki Doki Literature Club. Copyright © 2017 Team Salvato. All rights reserved.\n"
                 text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n[renpy.license!t]")
 
@@ -1172,7 +1391,7 @@ screen ddlc_preferences():
                     
                     null width 5
                 
-                    text str(round(preferences.get_mixer("music") * 100)) style "value_text"
+                    text str(round(preferences.get_volume("music") * 100)) style "value_text"
 
                 hbox:
                     bar value Preference("music volume")
@@ -1184,7 +1403,7 @@ screen ddlc_preferences():
                     
                     null width 5
                 
-                    text str(round(preferences.get_mixer("sfx") * 100)) style "value_text"
+                    text str(round(preferences.get_volume("sfx") * 100)) style "value_text"
 
                 hbox:
                     bar value Preference("sound volume")
@@ -1198,7 +1417,7 @@ screen ddlc_preferences():
                     
                     null width 5
                 
-                    text str(round(preferences.get_mixer("voice") * 100)) style "value_text"
+                    text str(round(preferences.get_volume("voice") * 100)) style "value_text"
 
                 hbox:
                     bar value Preference("voice volume")
@@ -1227,6 +1446,12 @@ screen template_preferences():
                         yes_action=[Hide("confirm"), ToggleField(persistent, "uncensored_mode")],
                         no_action=Hide("confirm")
                     ))
+                textbutton _("Let's Play Mode") action If(persistent.lets_play, 
+                    ToggleField(persistent, "lets_play"),
+                    [ToggleField(persistent, "lets_play"), Show("dialog", 
+                        message="You have enabled Let's Play Mode.\nThis mode allows you to skip content that\ncontains sensitive information or apply alternative\nstory options.\n\nThis setting will be dependent on the modder\nif they programmed these checks in their story.", 
+                        ok_action=Hide("dialog")
+                    )])
         
         vbox:
             style_prefix "name"
@@ -1241,63 +1466,28 @@ screen template_preferences():
             
             textbutton _("Change Name") action Show(screen="name_input", message="Please enter your name", ok_action=Function(FinishEnterName, launchGame=False)):
                 text_style "navigation_button_text"
-        
-        python:
-            has_discord_module = True
-            try:
-                RPC
-            except NameError:
-                has_discord_module = False
 
-        if not renpy.android and has_discord_module:
-            vbox:
-                style_prefix "name"
-                label _("Discord RPC")
+        null height (4 * gui.pref_spacing)
 
-                python:
-                    connect_status = _("Disconnected")
-                    if not persistent.enable_discord:
-                        connect_status = _("Disabled")
-                    if RPC.rpc_connected:
-                        connect_status = _("Connected")
-                
-                null height 3
+        hbox:
+            box_wrap True
 
-                text "[connect_status]" xalign 0.5
+            if enable_languages and translations:
+                vbox:
+                    style_prefix "radio"
+                    label _("Language")
+                    hbox:
+                        viewport:
+                            mousewheel True
+                            scrollbars "vertical"
+                            ysize 120
+                            has vbox
 
-                python:
-                    enable_text = _("Enable")
-                    if persistent.enable_discord:
-                        enable_text = _("Disable")
-
-                textbutton enable_text action [ToggleField(persistent, "enable_discord"), 
-                    If(persistent.enable_discord, Function(RPC.disconnect), Function(RPC.connect))]:
-                        text_style "navigation_button_text"
-                if persistent.enable_discord and not RPC.rpc_connected:
-                    textbutton _("Reconnect") action Function(RPC.connect):
-                        text_style "navigation_button_text"
-
-    null height (4 * gui.pref_spacing)
-
-    hbox:
-        box_wrap True
-
-        if enable_languages and translations:
-            vbox:
-                style_prefix "radio"
-                label _("Language")
-                hbox:
-                    viewport:
-                        mousewheel True
-                        scrollbars "vertical"
-                        ysize 120
-                        has vbox
-
-                        for tran in translations:
-                            vbox:
-                                for tlid, tlname in tran:
-                                    textbutton tlname:
-                                        action Language(tlid)
+                            for tran in translations:
+                                vbox:
+                                    for tlid, tlname in tran:
+                                        textbutton tlname:
+                                            action Language(tlid)
 
 ## Preferences screen ##########################################################
 ##
@@ -1444,41 +1634,60 @@ style value_text:
 
 screen history():
     tag menu
-    
-    ## Avoid predicting this screen, as it can be very large.
     predict False
 
     use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport")):
-        
         style_prefix "history"
-       
         for h in _history_list:
-            
             window:
-                
-                ## This lays things out properly if history_height is None.
                 has fixed:
                     yfit True
-
                 if h.who:
-
                     label h.who:
                         style "history_name"
-                        substitute False
-                        
-                        ## Take the color of the who text from the Character, if
-                        ## set.
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
-
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+                $ what = filter_text_tags(h.what, allow=set([]))
                 text what:
                     substitute False
-
         if not _history_list:
             label _("The dialogue history is empty.")
 
-define gui.history_allow_tags = set()
+python early:
+    import renpy.text.textsupport as textsupport
+    from renpy.text.textsupport import TAG, PARAGRAPH
+    
+    def filter_text_tags(s, allow=None, deny=None):
+        if (allow is None) and (deny is None):
+            raise Exception("Only one of the allow and deny keyword arguments should be given to filter_text_tags.")
+
+        if (allow is not None) and (deny is not None):
+            raise Exception("Only one of the allow and deny keyword arguments should be given to filter_text_tags.")
+
+        tokens = textsupport.tokenize(unicode(s))
+
+        rv = [ ]
+
+        for tokentype, text in tokens:
+
+            if tokentype == PARAGRAPH:
+                rv.append("\n")
+            elif tokentype == TAG:
+                kind = text.partition("=")[0]
+
+                if kind and (kind[0] == "/"):
+                    kind = kind[1:]
+
+                if allow is not None:
+                    if kind in allow:
+                        rv.append("{" + text + "}")
+                else:
+                    if kind not in deny:
+                        rv.append("{" + text + "}")
+            else:
+                rv.append(text.replace("{", "{{"))
+
+        return "".join(rv)
 
 style history_window is empty
 
@@ -1706,8 +1915,7 @@ screen name_input(message, ok_action):
                 style "confirm_prompt"
                 xalign 0.5
 
-            input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-            #additionally added Cyrillic characters to support Russian names for MC
+            input default "" value VariableInputValue("player") length 12 allow "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
             hbox:
                 xalign 0.5
@@ -2082,7 +2290,7 @@ screen choose_language():
 
                 textbutton renpy.translate_string(_("{#in language font}Select"), local_lang):
                     style "confirm_button"
-                    action [Language(chosen_lang), SetField(persistent, "has_chosen_language", True), Return()]
+                    action [Language(chosen_lang), Return()]
 
 translate None strings:
     old "{#language name and font}"
