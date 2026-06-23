@@ -212,8 +212,10 @@ label day0:
     "..."
     mc "I guess I have to go into the house and find the spaceroom again."
     scene bg kitchen with wipeleft_scene
+
     call instant_rain_stop from _call_instant_rain_stop_1
     play ambient rainindoors
+
     "My house look fine..."
     "What about the rooms?"
     "I slowly come to check all the rooms in my house."
@@ -236,6 +238,8 @@ label day0:
     "oh gosh... Now I can feel meiji body being thrown back inside my soul."
     "..."
     pl "A-AAAAAA444AA-AAA44-44AAA4AAAA-0-AAAAAAA"
+    stop ambient  
+
     scene bg room_destroyed
     pl "|iI| 4#M#M FR33E&&&E$$$$E33E**EEE$E$E"
     pl "{b}iI 6L4RE AT 7#E R00M 46a|N, S47^SfY1NG W|t^ |~H3 D4+4G3 |I| Ca4#3D !-{/b}"

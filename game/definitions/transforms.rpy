@@ -98,7 +98,7 @@ transform lhide:
     on hide:
         easeout .25 xcenter -300
 
-# This transform hides the character by moving them to the left.
+# This transform hides the character by moving them to the right.
 transform rhide:
     subpixel True
     on hide:
@@ -107,28 +107,48 @@ transform rhide:
 # These transforms have the characters stand still at a given position given
 # how many characters are on screen and which character number they are.
 #     Example for Monika with 2 other girls; being in between them: t32
-transform t41:
+transform t51: #Leftmost of 5 characters
+    tcommon(140)
+transform t52:
+    tcommon(390)
+transform t53:
+    tcommon(640)
+transform t54:
+    tcommon(890)
+transform t55:
+    tcommon(1140)
+transform t41: #Leftmost of 4 characters
     tcommon(200)
 transform t42:
     tcommon(493)
 transform t43:
     tcommon(786)
-transform t44:
+transform t44: #Rightmost of 4 characters
     tcommon(1080)
-transform t31:
+transform t31: #Leftmost of 3 characters
     tcommon(240)
 transform t32:
     tcommon(640)
-transform t33:
+transform t33: #Rightmost of 3 characters
     tcommon(1040)
-transform t21:
+transform t21: #Leftmost of 2 characters
     tcommon(400)
-transform t22:
+transform t22:#Rightmost of 2 characters
     tcommon(880)
-transform t11:
+transform t11: #One centered character
     tcommon(640)
 
-# These transforms makes the character pop in.
+#Same positioning as before, but pop in quickly
+transform i51:
+    tinstant(140)
+transform i52:
+    tinstant(390)
+transform i53:
+    tinstant(640)
+transform i54:
+    tinstant(890)
+transform i55:
+    tinstant(1140)
 transform i41:
     tinstant(200)
 transform i42:
@@ -150,7 +170,17 @@ transform i22:
 transform i11:
     tinstant(640)
 
-# These transforms makes the character be the main focus on-screen.
+#Same positioning as before, but make the character the focus
+transform f51:
+    focus(140)
+transform f52:
+    focus(390)
+transform f53:
+    focus(640)
+transform f54:
+    focus(890)
+transform f55:
+    focus(1140)
 transform f41:
     focus(200)
 transform f42:
@@ -172,7 +202,17 @@ transform f22:
 transform f11:
     focus(640)
 
-# These transforms makes the character sink downwards.
+#Same positioning, but use the sink animation
+transform s51:
+    sink(140)
+transform s52:
+    sink(390)
+transform s53:
+    sink(640)
+transform s54:
+    sink(890)
+transform s55:
+    sink(1140)
 transform s41:
     sink(200)
 transform s42:
@@ -194,7 +234,17 @@ transform s22:
 transform s11:
     sink(640)
 
-# These transforms makes the character hop.
+#Same positioning, but use a hop animation
+transform h51:
+    hop(140)
+transform h52:
+    hop(390)
+transform h53:
+    hop(640)
+transform h54:
+    hop(890)
+transform h55:
+    hop(1140)
 transform h41:
     hop(200)
 transform h42:
@@ -216,7 +266,17 @@ transform h22:
 transform h11:
     hop(640)
 
-# These transforms makes the character hop and be in focus at the same time.
+#Same positioning, but hop the character into focus
+transform hf51:
+    hopfocus(140)
+transform hf52:
+    hopfocus(390)
+transform hf53:
+    hopfocus(640)
+transform hf54:
+    hopfocus(890)
+transform hf55:
+    hopfocus(1140)
 transform hf41:
     hopfocus(200)
 transform hf42:
@@ -238,7 +298,17 @@ transform hf22:
 transform hf11:
     hopfocus(640)
 
-# These transforms makes the character dip down the screen, then come back up.
+#Same positioning, but with a dip animation
+transform d51:
+    dip(140)
+transform d52:
+    dip(390)
+transform d53:
+    dip(640)
+transform d54:
+    dip(890)
+transform d55:
+    dip(1140)
 transform d41:
     dip(200)
 transform d42:
@@ -260,7 +330,17 @@ transform d22:
 transform d11:
     dip(640)
 
-# These transforms makes the character fly in from the left.
+#Same positioning, but fly in from the left
+transform l51:
+    leftin(140)
+transform l52:
+    leftin(390)
+transform l53:
+    leftin(640)
+transform l54:
+    leftin(890)
+transform l55:
+    leftin(1140)
 transform l41:
     leftin(200)
 transform l42:
@@ -283,6 +363,16 @@ transform l11:
     leftin(640)
 
 # These transforms makes the character fly in from the right.
+transform l51:
+    rightin(140)
+transform l52:
+    rightin(390)
+transform l53:
+    rightin(640)
+transform l54:
+    rightin(890)
+transform l55:
+    rightin(1140)
 transform r41:
     rightin(200)
 transform r42:
@@ -584,3 +674,15 @@ image rain: #you can edit every line to use your own rain frames
     alpha rain_alpha
     rain_speed
     repeat
+
+transform nighttime:
+    matrixcolor TintMatrix("#576bacff") or BrightnessMatrix (1.0)
+
+transform midnighttime:
+    matrixcolor TintMatrix("#3f4970ff") or BrightnessMatrix (1.0)
+
+transform unavailable:
+    matrixcolor TintMatrix("#2b324fff") or BrightnessMatrix (1.0)
+
+transform raintime:
+    matrixcolor TintMatrix("#e1e1e1ff") or BrightnessMatrix (1.0)

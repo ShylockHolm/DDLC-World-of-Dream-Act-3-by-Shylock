@@ -1,6 +1,24 @@
 # Copyright 2019-2025 Azariel Del Carmen (bronya_rand). All rights reserved.
 # This is where the splashscreen, disclaimer and menu code reside in.
 
+init python:
+    menu_trans_time = 1
+    splash_message_default = "This game is not suitable for children\nor those who are easily disturbed."
+    splash_messages = [
+    "You are my sunshine,\nMy only sunshine",
+    "I missed you.",
+    "Play with me",
+    "It's just a game, mostly.",
+    "This game is not suitable for children\nor those who are easily disturbed?",
+    "sdfasdklfgsdfgsgoinrfoenlvbd",
+    "null",
+    "I have granted kids to hell",
+    "PM died for this.",
+    "It was only partially your fault.",
+    "This game is not suitable for children\nor those who are easily dismembered.",
+    "Don't forget to backup Monika's character file."
+    ]
+
 # This image text shows the splash message when the game loads.
 image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign=0.5)
 

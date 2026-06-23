@@ -265,8 +265,13 @@ image bg space_kitchen = "mod_assets/bg/sckitchen.png"
 image bg mc_bedroom = "mod_assets/bg/bedroom6.png"
 
 
-###### Character Variables ######
-# These configure the shortcuts for writing dialog for each character.
+## Character Variables
+# This is where the characters are declared in the mod.
+# To define a new character with assets, declare a character variable like in this example:
+#   define e = DynamicCharacter('e_name', image='eileen', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+# To define a new character without assets, declare a character variable like this instead:
+#   define en = Character('Eileen & Nat', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed")
+
 define narrator = Character(ctc="ctc", ctc_position="fixed", window_background=Image("mod_assets/gui/player.png", xalign=0.5, yalign=1.0))
 
 define s = DynamicCharacter('s_name', image='Sayori', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", window_background=Image("mod_assets/gui/sayori.png", xalign=0.5, yalign=1.0), who_style='say_label_sayori')
@@ -289,9 +294,14 @@ define ev = Character(_('Everyone'), what_prefix='"', what_suffix='"', ctc="ctc"
 
 define _dismiss_pause = config.developer
 
-###### Persistent Variables ######
-# These values are automatically loaded/saved on game start and exit.
-# These exist across all saves
+## Variables
+# This section declares variables when the mod runs for the first time on all saves.
+# To make a new persistent variable, make a new variable with the 'persistent.' in it's name
+# like in this example:
+#   default persistent.monika = 1
+# To make a non-persistent variable, make a new variable like this instead:
+#   default cookies = False
+# To make sure a variable is set to a given condition use 'define' rather than 'default'.
 
 default persistent.playername = ""
 default player = persistent.playername

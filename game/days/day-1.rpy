@@ -2,23 +2,23 @@ label dayminus1:
     stop music fadeout 3.0
     scene black with dissolve_scene_full
 
-    $ mpt_af_mouth_auto = True
+    $ mpt_af_mouth_auto = False
     $ af_enabled = True
     "The maincasts of DDLC."
-    show sayori turned happ at t41 zorder 2
-    show monika forward happ at t42 zorder 2
-    show natsuki turned happ at t43 zorder 2
-    show yuri turned happ at t44 zorder 2
+    show sayori turned happ at t51 zorder 2
+    show monika forward happ at t52 zorder 2
+    show natsuki turned happ at t54 zorder 2
+    show yuri turned happ at t55 zorder 2
     "All the cute girls appear." 
-    show meiji 1a at t11 zorder 3
+    show meiji 1a at t53 zorder 3
     "Oh and the protagonist appears too but he has a sprite :omg:"
-    show sayori afm 
-    show monika afm
-    show natsuki afm 
-    show yuri afm 
+    show sayori at nighttime
     s "Hello everyone!"
+    show sayori at midnighttime 
     m "Hello sayo and the clubs."
+    show sayori at unavailable
     n "Hi Im cute"
+    show sayori at raintime
     y "Wait that is illegal..."
     me "Hey hey I'm here too!"
     n "Oh come on! I accidentally said it again"
