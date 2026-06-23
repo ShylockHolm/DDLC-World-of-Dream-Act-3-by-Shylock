@@ -1,4 +1,5 @@
-# Copyright 2019-2025 Azariel Del Carmen (bronya_rand). All rights reserved.
+## transforms.rpy
+
 # This file defines the placements and animations in DDLC.
 
 # This transform sizes the character properly at the given X position.
@@ -553,3 +554,33 @@ init python:
 transform malpha(a=1.00):
     i11
     alpha a
+
+define rain_alpha = .7  # rain alpha
+define rain_speed = .05 # lower values makes the rain faster
+image rain: #you can edit every line to use your own rain frames
+    truecenter
+    "/mod_assets/rain/images/effects/rain1.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain2.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain3.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain4.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain5.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain6.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain7.png"
+    alpha rain_alpha
+    rain_speed
+    "/mod_assets/rain/images/effects/rain8.png"
+    alpha rain_alpha
+    rain_speed
+    repeat
