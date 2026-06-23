@@ -1,0 +1,17 @@
+*.rpa
+*.rpyb
+*.rpyc
+*.psd
+firstrun
+DDLCModTemplate-*.*.*.zip
+log.txt
+traceback.txt
+game/cache
+game/saves
+.DS_Store
+errors.txt
+*.pyc
+__pycache__
+ZIPs
+.venv
+.vscode
