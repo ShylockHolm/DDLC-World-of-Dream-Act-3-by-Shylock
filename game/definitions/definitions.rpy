@@ -30,8 +30,7 @@ init python:
 #   "bgm/1.ogg" - This tells Ren'Py the path of the music/sound file to use.
 # Example: 
 #   define audio.t2 = "bgm/2.ogg"
-define audio.t1 = "<loop 22.073>bgm/1.ogg"  #Main theme (title)
-
+define audio.t1 = "<loop 0>mod_assets/audio/bgm.ogg"  #Main theme (title)
 
 define audio.t2 = "<loop 4.499>bgm/2.ogg"   #Sayori theme
 define audio.t2g = "bgm/2g.ogg"
@@ -106,9 +105,16 @@ define audio.crack = "sfx/crack.ogg"
 define audio.eyes = "sfx/eyes.ogg"  
 
 define audio.mori = "<loop 0>mod_assets/audio/anonymous.mp3"
-define audio.happy = "<loop0>mod_assets/audio/happy.mp3"
-define audio.sad = "<loop0>mod_assets/audio/sad.mp3"
-define audio.hope = "<loop0>mod_assets/audio/I_dont_want_to_lose_hope.mp3"
+define audio.happy = "<loop 0>mod_assets/audio/happy.mp3"
+define audio.sad = "<loop 0>mod_assets/audio/sad.mp3"
+define audio.hope = "<loop 0>mod_assets/audio/I_dont_want_to_lose_hope.mp3"
+
+define audio.kick = "mod_assets/sfx/kick.ogg"
+define audio.slam = "mod_assets/sfx/slam.ogg"
+define audio.felt = "mod_assets/sfx/fall.ogg"
+define audio.metal = "mod_assets/sfx/metal.mp3"
+define audio.door_open = "mod_assets/sfx/door1.ogg"
+define audio.door_close = "mod_assets/sfx/door2.ogg"
 
 ## Backgrounds
 # This section declares the backgrounds available to be shown in the mod.
@@ -263,7 +269,7 @@ image bg aiko_room = "mod_assets/bg/Aiko-Room.png"
 image bg space_bedroom = "mod_assets/bg/sc1.png"
 image bg space_kitchen = "mod_assets/bg/sckitchen.png"
 image bg mc_bedroom = "mod_assets/bg/bedroom6.png"
-
+image bg school_rain = "mod_assets/bg/corridor-rain.png"
 
 ## Character Variables
 # This is where the characters are declared in the mod.
@@ -291,6 +297,9 @@ define pl = DynamicCharacter('pl_name', what_prefix='"', what_suffix='"', ctc="c
 define ny = Character('Nat & Yuri', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", window_background=Image("mod_assets/gui/player.png", xalign=0.5, yalign=1.0), who_style='say_label_mc')
 define u = Character(_('?????'), what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="nestled", who_style='say_label_mc', window_background=Image("mod_assets/gui/player.png", xalign=0.5, yalign=1.0))
 define ev = Character(_('Everyone'), what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="nestled", who_style='say_label_mc', window_background=Image("mod_assets/gui/player.png", xalign=0.5, yalign=1.0))
+
+define le = DynamicCharacter('le_name', image='lemon', what_prefix='"', what_suffix='"', ctc="ctc", ctc_position="fixed", window_background=Image("mod_assets/gui/player.png", xalign=0.5, yalign=1.0), who_style='say_label_mc')
+image lemon 1a = im.Composite((500, 670), (0, 0), "mod_assets/lemon.png")
 
 define _dismiss_pause = config.developer
 
@@ -343,6 +352,7 @@ default koz_name = "Kozue"
 default ya_name = "Yae"
 
 default pl_name = "?pl̸%a̴y̸j̵i̸"
+default le_name = "Lemon"
 
 # Instantiating variables for poem appeal. This is how much each character likes the poem for each day.
 # -1 = Dislike, 0 = Neutral, 1 = Like

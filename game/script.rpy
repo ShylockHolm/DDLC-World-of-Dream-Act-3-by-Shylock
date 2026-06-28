@@ -15,6 +15,7 @@ label start:
     $ mo_name = "Mori"
     $ koz_name = "Kozue"
     $ ya_name = "Yae"
+    $ le_name = "Lemon"
 
     $ quick_menu = True
     $ style.say_dialogue = style.normal
@@ -22,7 +23,7 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    #call dayminus1
+    call dayminus1
     call day0 from _call_day0
     jump endgame
 

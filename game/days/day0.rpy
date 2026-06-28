@@ -1,7 +1,7 @@
 label day0:
     stop music fadeout 3.0
     scene black with dissolve_scene_full
-    play music m1 fadeout 1.0
+    play music m1 fadein 1.0
     "The Oracle Compass can't save you now."
     "Welcome..."
     "TO THE WORLD OF DREAM!"
@@ -201,7 +201,7 @@ label day0:
     "... {w}{i}but nobody came.{/i}"
     scene bg unknown with dissolve_scene_full
     call rain from _call_rain_1
-    play ambient rain fadein 5.0
+    play ambient rain fadein 3.0
     "{i}...huff...puff...{/i}"
     "Gosh... why it's not only raining but fogging now?"
     "..."
@@ -212,9 +212,10 @@ label day0:
     "..."
     mc "I guess I have to go into the house and find the spaceroom again."
     scene bg kitchen with wipeleft_scene
-
+    stop ambient
     call instant_rain_stop from _call_instant_rain_stop_1
-    play ambient rainindoors
+
+    play ambient rainindoors fadein 1.0
 
     "My house look fine..."
     "What about the rooms?"
@@ -238,7 +239,7 @@ label day0:
     "oh gosh... Now I can feel meiji body being thrown back inside my soul."
     "..."
     pl "A-AAAAAA444AA-AAA44-44AAA4AAAA-0-AAAAAAA"
-    stop ambient  
+    stop ambient fadeout 2.0
 
     scene bg room_destroyed
     pl "|iI| 4#M#M FR33E&&&E$$$$E33E**EEE$E$E"
@@ -323,7 +324,8 @@ label day0:
     "At Sayori and Meiji's bedroom."
     scene bg space_bedroom with wipeleft_scene
     n "Sayori? Are you there?"
-    "Natsuki then find herself Sayori... but hanging from the ceiling fan."
+    "Natsuki then find Sayori hanging from the ceiling fan."
+    play sound s_kill_glitch1
     show s_kill at s42 zorder 2
     n "..."
     n "oh... god..."
@@ -393,37 +395,48 @@ label day0:
     koz "Are you gonna emotionally attack me? You know it's not gonna work for me"
     koz "I'm here wanting a full blown rematch after {i}that{/i} day."
     "Smirk, Playji hands vehemently move across the air."
-    "A console appeared at Kozue's peripheral vision."
+    "A console appears at Kozue's peripheral vision."
     koz "Ah... no fair."
 
     #scene change to the groups trying to find player
     scene dark with dissolve_scene_full
-    "Back to a few minutes, Monika and the group still going through school to find [player]."
-    
-    m "Oh shit why I see the console?"
+    "Back to a few minutes, Monika and the group is still going through school to find [player]."
+    scene school_rain with dissolve_scene_full
+
+    show monika forward casual lpoint shoc om at t31 zorder 1
+    show kotonoha 1bt at t32 zorder 1
+    show mori 1bj at t33 zorder 1
+    m "Oh shit why do I see the console?"
     kot "Oh yeah! I saw that too!"
     m "Only Playji can have access to that!"
-    mo "So is that why Meiji dissapeared earlier?"
-    kot "I suppose so..."
+    mo "So is that the reason why Meiji dissapeared earlier?"
+    kot "I supposed so..."
     kot "Oh no he might be at the house..."
     m "Oh fuck, I think he's trying to access..."
     m "KOZUE NO!"
     mo "WAIT! EVERYONE GO BACK TO THE HOUSE NOW, KOZUE IS STILL IN THE SPACEROOM!"
     m "YEAH, EVERYONE FOLLOWS ME!"
-    "The group panickingly dash back to Meiji's house. Hoping nothing bad will happened to anyone left behind."
+    "The group panickingly dashes back to Meiji's house. Hoping nothing bad will happened to anyone left behind."
+
+    show monika at thide 
+    hide monika
+    show mori at thide 
+    hide mori
+    show kotonoha at thide 
+    hide kotonoha
 
     #Epic playji vs kozue fight cg here
     scene dark with dissolve_scene_full
     "Back to the Meiji's house."
     scene bg livingroom
     "In the console Playji get access Kozue character file."
-    "He try to change velocity of her sprite to y = 100"
+    "He tries to change velocity of her sprite to y = 100"
     koz "Oh damn it!"
-    #insert sfx here
+    play sound felt
     koz "AH-"
-    "Kozue falls hard... {w=1.0}but she quickly gets up, her hand suddenly throws a knife toward Playji."
+    "Kozue felt hard... {w=1.0}but she quickly gets up, her hand suddenly throws a makeshift knife toward Playji."
     koz "TAKE THIS YOU MONSTER!"
-    "The knife shred Playji's left forearm, unabled him to use the console temparory."
+    "Yuri's knife shreds Playji's left forearm, unabled him to use the console temparory."
     pl "{b}You think I will just rely on the console to kill you?{/b}"
     "A large metal bar magically appeared in front of Playji, he promtly grabs it and position himself into fighting posture."
     koz "YOU HAVE TO BE KIDDING ME!"
@@ -431,33 +444,36 @@ label day0:
     "A conveniently place lamp catches her eyes."
     koz "Now... YOU are in a big trouble."
     "Kozue grinds her teeth, putting in big cunning smile."
-    "She take the power cord of the lamp, quietly rolls around her left arm. The right arm then grabs the lamp body."
+    "She takes the power cord of the lamp, quietly rolls around her left arm. The right arm then grabs the lamp body."
     koz "Brings it on!"
-    #insert sfx here
+    play sound kick
     "Playji goes first, he full swings the metal bar up to Kozue head."
-    #insert sfx here
     "Kozue seem to already know the trick, she swiftly duck down, the lamp on her hand flies toward Playji's legs."
-    pl "{b}Grahh! what the fuck!{/b}"
+    play sound slam
+    pl "{b}Grahh! what the?{/b}"
     "Playji lost balanced, his body flickering, just a bit more until he falls down."
-    "He insticntively raise the metal bar to the front, trying to defence from Kozue next attack."
-    "Kozue pull the lamp back to her hand, then jump behind the couch, blasting the lamp to Playji's head."
+    "He insticntively raises the metal bar to the front, trying to defence from Kozue next attack."
+    "Kozue pulls the lamp back to her hand, then jumps behind the couch blasting the lamp to Playji's head."
     "But unfortunately, Playji defend it with the metal bar and instantly put the lamp into milion pieces."
     koz "Fuck!"
-    "Kozue throw the power cord to her side and jump directly at Playji, trying to tackle Playji's metal stick."
+    "Kozue throws the power cord to her side and jump directly at Playji, trying to tackle Playji's metal stick."
     "Suprise by the unexpecting movement from Kozue, Playji pin down the metal bar to his body, trying to protect it."
-    "Kozue use her right leg to put a kick upto Playji face."
+    play sound kick
+    "Kozue uses her right leg to put a kick upto Playji face."
     "Playji lose balance again."
     "Kozue notices his vunerable situation, she pulls her left arm and swing it forcefully to Playji's head."
-    #insert sfx here
+    play sound slam 
     koz "Fuck you!"
     pl "{b}GRAHHHHH-{/b}"
     #End of epic cg
-    #Insert sfx here
+    play sound felt
     "Playji falls to the ground"
+    play sound metal
     "The metal bar fall to thre ground "
     pl "{b}It look like you've defeated me.{/b}"
-    pl "{b}But not for long-{/b}"
-    #insert sfx here
+    pl "{b}But not for long...{/b}"
+
+    play sound door_open
     show monika forward casual pani om oe awkw at t11 zorder 2
     m "KOZUE ARE YOU OKAY?"
     show monika cm 
@@ -467,16 +483,19 @@ label day0:
     m "Wah-?"
     show monika cm
     pl "{b}The script has decided.{/b}"
-    "Playji pick up the metal bar, then full swings it to Kozue's head."
+    "Playji picks up the metal bar, then full swings it to Kozue's head."
+    play sound kick
     koz "AH!"
+    play sound felt
     "Kozue takes a painful hit and felt hard to the ground."
     show monika om
-    m "What NO!"
-    "Playji then use the console to teleport to Monika, then the two disapeared"
+    m "W-w-... what is happening!"
+    "Monika looks down to Kozue lifeless body, barely able to uttered her words"
+    pl "JuSt M0n1k4."
+    play sound glitch1
+    "Playji uses the console to teleport to Monika, then the two disapeared."
     show monika at thide
     hide monika
-    show koz 2zzzb at t31 zorder 2
-    koz "Oh gosh gosh no..."
     
 
 

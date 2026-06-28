@@ -681,7 +681,7 @@ transform nighttime:
 transform midnighttime:
     matrixcolor TintMatrix("#3f4970ff") or BrightnessMatrix (1.0)
 
-transform unavailable:
+transform dark:
     matrixcolor TintMatrix("#2b324fff") or BrightnessMatrix (1.0)
 
 transform raintime:

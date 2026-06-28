@@ -3,7 +3,7 @@
 
 init python:
     menu_trans_time = 1
-    splash_message_default = "This game is not suitable for children\nor those who are easily disturbed."
+    splash_message_default = "This game is not suitable for Shylock\nor those who are easily disturbed."
     splash_messages = [
     "You are my sunshine,\nMy only sunshine",
     "I missed you.",
@@ -28,11 +28,10 @@ image splash_warning = ParameterizedText(style="splash_text", xalign=0.5, yalign
 
 # This image shows the DDLC logo in the normal DDLC position.
 image menu_logo:
-    "mod_assets/DDLCModTemplateLogo.png"
-    # im.Composite((512, 512), (0, 0), recolorize("mod_assets/logo_bg.png"), (0, 0), "mod_assets/logo_fg.png")
+    "mod_assets/WoD3.png"
     subpixel True
-    xcenter 240
-    ycenter 120
+    xcenter 200
+    ycenter 150
     zoom 0.60
     menu_logo_move
 
@@ -40,7 +39,7 @@ image menu_logo:
 image menu_bg:
     topleft
     "gui/menu_bg.png"
-    # recolorize("gui/menu_bg.png", "#ffdbf0", "#fff", 1)
+    # recolorize("gui/menu_bg.png", "#1114e2", "#2bd3ed", 1)
     menu_bg_move
 
 # This image shows the pause menu polka-dot image.
@@ -179,7 +178,7 @@ transform menu_bg_loop:
 # This transform moves the menu logo down to it's intended placement in-game.
 transform menu_logo_move:
     subpixel True
-    yoffset -300
+    yoffset -310
     time 1.925
     easein_bounce 1.5 yoffset 0
 
@@ -283,14 +282,11 @@ label splashscreen:
         # get DDLC (preferably https://ddlc.moe).
         #
         # ...Yes this even applies if your mod has no spoilers whatsoever.
-        "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated in anyway with Team Salvato."
-        "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
-        "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: https://ddlc.moe or on Steam."
-
-        menu:
-            "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."
-            "I agree.":
-                $ persistent.first_run = True
+        "\nWorld of Dreams Act 3 is a Doki Doki Literature Club fan mod that is not affiliated with Team Salvato.\n"
+        "It is designed to be played only after the official game has been completed, and contains spoilers for the official game.\n"
+        "World of Dreams Act 3 also assumes you have read and completed\nAct 1 and Act 2 of the mod.\n"
+        "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: \nhttp://ddlc.moe\n"
+        "This game/mod is not suitable for children or those who are easily disturbed. It covers topics that are sensitive in nature.\n"
 
         scene tos2
         with Dissolve(1.5)
